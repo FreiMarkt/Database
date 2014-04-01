@@ -1,3 +1,6 @@
+/*I tested those scripts on Sql Server 2000, it can also work on the PostgreSql, the only thing you should do is copying these
+codes and pasting them on your database develop platform, then deploy them, if you still have questions, please
+contact us. I have made some description of the scripts, you can check it*/
 set nocount on 
 set dateformat ymd
 use master
@@ -6,19 +9,19 @@ go
   exec sp_addlogin user01,user01
 go
 /*create database*/
-if exists(select *from sysdatabases where name='TimeBankDB')
+if exists(select *from sysdatabases where name='TimeBankDB')/*the name of our database is TimeBankDB*/
      drop database TimeBankDB
 go 
 create database TimeBankDB
 on primary
  ( name='TimeBankDB',
-   filename='f:\myWork\TimeBankDB.mdf',
+   filename='f:\myWork\TimeBankDB.mdf',/*.mdf is master database file, it means this file will be put in the myWork folder of your F: disk, you can change it by yourself*/
    size=1,
    maxsize=5,
    filegrowth=1)
 log on 
  ( name='TimeBankLog',
-   filename='f:\myWork\TimeBankLog.ldf',
+   filename='f:\myWork\TimeBankLog.ldf',/*.ldf is Log databse file, it means the same as .mdf, you can change according to your needs*/
    size=1,
    maxsize=5,
    filegrowth=1)
@@ -32,7 +35,7 @@ go
 exec sp_adduser user01,user01
 go
 /*create tables of different roles*/
-drop table passivemember
+drop table passivemember /*in case there are existed tables with the same name*/
 create table Passivemember (
 MemberID Char(15)  primary key not null, /*The memberID is genarated by the system randomly and be assigned to members*/
 Username Char(15) not null,
@@ -45,31 +48,31 @@ phonenumber Char(12) not null,
 paymentStatus bit  not null, /*if paymentstatus=1, then paymentstatus="paid", else if paymentstatus=0, then paymentstatus="unpaid"*/
 FiftyfiveMember bit  not null,/*if FiftyfiveMember=1, then FiftyfiveMember="Yes", else if FiftyfiveMember=0, then FiftyfiveMember="No"*/
 postalCode Char(15) not null,
-Birthday  Datetime  not null,
-RoleID    Int       not null 
+Birthday  Datetime  not null, /*the format of Birthday should be like that "yyyymmdd"*/
+RoleID    Int       not null /*1=Active user (non-55+account), 2=Active user (55+account), 3=Passive user (non-55+account), 4=Passive user (55+account), 5=Other time banks, 6=Organizations*/
 )
 insert Passivemember values ('001', 'Derick Chow','070667',23,1, 'Yliopistokatu 16 503,Oulu,Finland','yongzhou1314@gmail.com','0414938862',1,0,'90570','19911028',1)
-select * from passivemember 
-select case gender when 1 then 'male' when 0 then 'female' end as Gender from Passivemember
+/*this is the insert sentence, you can use it to insert data to database frequently, but pay attentions to the format of data*/
 drop table activemember
 create table ActiveMember (
 memberID char(15)    not null primary key,
 username char(50)    not null,
-ppassword char(15)    not null,
+ppassword char(16)    not null,
 age      int         not null,
 gender   bit  not null,
 address  char(200)   not null,
 email    char(30)    not null,
 phonenumber char(12) not null,
-accountNo char(15) not null,
+accountNo char(15) not null, /*The AccountNo is genarated by the system randomly and be assigned to members*/
 FiftyfiveMember bit  not null,
 postalcode char(15)   not null,
 Birthday datetime    not null,
-RoleID   int         not null
+RoleID   int         not null,
+constraint ActivememberFK foreign key(accountNo) references personalAccount(accountNo)
 )
 
 insert activemember values ('002', 'Fang Xin','fangxin1104',21,0, 'Yliopistokatu 16 303,Oulu,Finland','fangxin1104@gmail.com','0414938867','78768237',1,'90570','19911028',1)
-select * from activemember
+
 drop table teller
 create table Teller(
 RoleID  Int not null,
@@ -106,7 +109,7 @@ constraint TransactionDetailsFK1 foreign key(offererID) references Activemember(
 drop table personalAccount
 create table PersonalAccount (
 AccountNo char(15) not null primary key,
-SumHours Numeric(6,2) not null,
+SumHours Numeric(6,2) not null, /*the sum of all your hours in your personal account*/
 TransactionID  Char(15)  not null,
 MemberID Char(15) not null,
 constraint personalAccountFK foreign key(MemberID) references Activemember(memberID)
