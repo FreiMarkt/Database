@@ -31,21 +31,22 @@ go
 /* add my user*/
 exec sp_adduser user01,user01
 go
+/*create tables of different roles*/
 drop table passivemember
 create table Passivemember (
-MemberID Char(15)  primary key not null,
+MemberID Char(15)  primary key not null, /*The memberID is genarated by the system randomly and be assigned to members*/
 Username Char(15) not null,
-ppassword Char(15) not null,
+ppassword Char(16) not null, /*The length of password should be >6 and >15, should contains numbers and letters*/
 age      Int      not null,
-gender   bit  not null,
+gender   bit  not null, /*if gender=1, then gender="male", else if gender=0, then gender="female"*/
 address  Char(200) not null,
-email    Char(30)  not null,
+email    Char(30)  not null, /*the email address should contain "@"*/
 phonenumber Char(12) not null,
-paymentStatus bit  not null,
-FiftyfiveMember bit  not null,
+paymentStatus bit  not null, /*if paymentstatus=1, then paymentstatus="paid", else if paymentstatus=0, then paymentstatus="unpaid"*/
+FiftyfiveMember bit  not null,/*if FiftyfiveMember=1, then FiftyfiveMember="Yes", else if FiftyfiveMember=0, then FiftyfiveMember="No"*/
 postalCode Char(15) not null,
 Birthday  Datetime  not null,
-RoleID    Int       not null
+RoleID    Int       not null 
 )
 insert Passivemember values ('001', 'Derick Chow','070667',23,1, 'Yliopistokatu 16 503,Oulu,Finland','yongzhou1314@gmail.com','0414938862',1,0,'90570','19911028',1)
 select * from passivemember 
