@@ -55,7 +55,7 @@ insert Passivemember values ('001', 'Derick Chow','070667',23,1, 'Yliopistokatu 
 /*this is the insert sentence, you can use it to insert data to database frequently, but pay attentions to the format of data*/
 drop table activemember
 create table ActiveMember (
-memberID char(15)    not null primary key,
+memberID char(15)    not null primary key,/*Because MemberID is unique,one ID belongs to one member,it can identify the member, so it is primary key*/
 username char(50)    not null,
 ppassword char(16)    not null,
 age      int         not null,
@@ -64,10 +64,10 @@ address  char(200)   not null,
 email    char(30)    not null,
 phonenumber char(12) not null,
 accountNo char(15) not null, /*The AccountNo is genarated by the system randomly and be assigned to members*/
-FiftyfiveMember bit  not null,
+FiftyfiveMember bit  not null, /*if FiftyfiveMember=1, then FiftyfiveMember="Yes", else if FiftyfiveMember=0, then FiftyfiveMember="No"*/
 postalcode char(15)   not null,
 Birthday datetime    not null,
-RoleID   int         not null,
+RoleID   int         not null,/*1=Active user (non-55+account), 2=Active user (55+account), 3=Passive user (non-55+account), 4=Passive user (55+account), 5=Other time banks, 6=Organizations*/
 constraint ActivememberFK foreign key(accountNo) references personalAccount(accountNo)
 )
 
@@ -89,7 +89,7 @@ VerficiationDate Datetime not null,
 TellerID Char(15) not null,
 MemberID Char(15) not null,
 ResigerationDate Datetime not null,
-constraint VerificationFK1 foreign key(TellerID) references Teller(TellerID), 
+constraint VerificationFK1 foreign key(TellerID) references Teller(TellerID), /*It is hard to explain what is foreign key, you can google "foreign key" by yourself*/
   constraint VerificationFK2 foreign key(MemberID) references Passivemember(MemberID)   
 )
 drop table Transactiondetails
@@ -98,10 +98,10 @@ TransactionName Char(50) not null,
 TransactionID Char(15) not null primary key,
 ddescription Char(200) not null,
 WorkingHours Numeric(6,2) not null,
-OffererID Char(15) not null,
-TransactionStatus bit not null,
+OffererID Char(15) not null, /*It means the activemember who provides the job*/
+TransactionStatus bit not null,/*if TransactionStatus=1, then TransactionStatus="Done", else if TransactionStatus=0, then TransactionStatus="Undone"*/
 Category Char(50) not null,
-RecipientID Char(15) not null,
+RecipientID Char(15) not null, /*It means the active member who accepts the job*/
 TransactionTime datetime not null,
 constraint TransactionDetailsFK1 foreign key(offererID) references Activemember(memberID), 
   constraint TransactionDetailsFK2 foreign key(recipientID) references Activemember(MemberID)
