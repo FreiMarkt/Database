@@ -1,15 +1,20 @@
 [1]Steps of how to deploy sql scripts on Mysql:
 http://www.dcc.fc.up.pt/~pbrandao/aulas/0203/bdm/docs/mysql/manual_Installing.html
 1. you should download the mysql from internet first;
+
 2. select the "typical" installation, and remember where the "MySQL" folder is;
+
 3. open the command prompt(typing "cmd"), and open the folder of "MySQL", for example: you can type 
 "cd C:\Program Files\MySQL\bin";
+
 4. after open it, you should type "mysql -uroot -p",then you will see it ask you input the password,
 because you don't have password when you first open it, so ignore the "input password", just press
 "enter", you can see >mysql;
+
 5. then you can copy the scripts, and paste them on it, before you press"enter", you should add ";".
 attention: don't paste all of the scripts one time, it should be divided into several parts, I will make note on the 
 sql scripts.
+
 6. You can check them use some "select" sentences.
 
 [2]If you want to use the script on PostgreSql on Linux OS, then you can do as follow instructions:
