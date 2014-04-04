@@ -1,6 +1,6 @@
 [1]Steps of how to deploy sql scripts on Mysql:
 http://www.dcc.fc.up.pt/~pbrandao/aulas/0203/bdm/docs/mysql/manual_Installing.html
-
+1. you should download 
 
 [2]If you want to use the script on PostgreSql on Linux OS, then you can do as follow instructions:
 
