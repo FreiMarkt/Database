@@ -1,18 +1,8 @@
-The steps of deploying SQL scripts:
+[1]Steps of how to deploy sql scripts on Mysql:
+http://www.dcc.fc.up.pt/~pbrandao/aulas/0203/bdm/docs/mysql/manual_Installing.html
 
-1) download SQL Server 2000 (Or any other version of Sql Server) on the virtual machine;
 
-2) install Sql server 2000, and set the server by yourself;
-
-3) run the server, and open the Sql Query analyzer;
-
-4) paste the Sql scripts on the Sql Query analyzer, and deploy it;
-
-5) then the database will be built, you can use "select * from Passivemember" to check if the database was built (because
-I have insert one piece of data into the "passivemember" table of the databse).
- 
- 
-If you want to use the script on PostgreSql on Linux OS, then you can do as follow instructions:
+[2]If you want to use the script on PostgreSql on Linux OS, then you can do as follow instructions:
 
 PostgreSQL Linux Installation and use booklet
 
@@ -282,3 +272,17 @@ REVOKE
 REVOKE 
 GRANT 
 GRANT
+
+[3]The steps of deploying SQL scripts on Sql Server:
+
+1) download SQL Server 2000 (Or any other version of Sql Server) on the virtual machine;
+
+2) install Sql server 2000, and set the server by yourself;
+
+3) run the server, and open the Sql Query analyzer;
+
+4) paste the Sql scripts on the Sql Query analyzer, and deploy it;
+
+5) then the database will be built, you can use "select * from Passivemember" to check if the database was built (because
+I have insert one piece of data into the "passivemember" table of the databse).
+ 
