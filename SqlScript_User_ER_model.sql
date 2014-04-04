@@ -16,13 +16,13 @@ create database TimeBankDB
 on primary
  ( name='TimeBankDB',
    filename='f:\myWork\TimeBankDB.mdf',/*.mdf is master database file, it means this file will be put in the myWork folder of your F: disk, you can change it by yourself*/
-   size=1,
+   size=2,
    maxsize=5,
    filegrowth=1)
 log on 
  ( name='TimeBankLog',
    filename='f:\myWork\TimeBankLog.ldf',/*.ldf is Log databse file, it means the same as .mdf, you can change according to your needs*/
-   size=1,
+   size=2,
    maxsize=5,
    filegrowth=1)
 go
@@ -67,8 +67,8 @@ accountNo char(15) not null, /*The AccountNo is genarated by the system randomly
 FiftyfiveMember bit  not null, /*if FiftyfiveMember=1, then FiftyfiveMember="Yes", else if FiftyfiveMember=0, then FiftyfiveMember="No"*/
 postalcode char(15)   not null,
 Birthday datetime    not null,
-RoleID   int         not null,/*1=Active user (non-55+account), 2=Active user (55+account), 3=Passive user (non-55+account), 4=Passive user (55+account), 5=Other time banks, 6=Organizations*/
-constraint ActivememberFK foreign key(accountNo) references personalAccount(accountNo)
+RoleID   int         not null/*1=Active user (non-55+account), 2=Active user (55+account), 3=Passive user (non-55+account), 4=Passive user (55+account), 5=Other time banks, 6=Organizations*/
+
 )
 
 insert activemember values ('002', 'Fang Xin','fangxin1104',21,0, 'Yliopistokatu 16 303,Oulu,Finland','fangxin1104@gmail.com','0414938867','78768237',1,'90570','19911028',1)
