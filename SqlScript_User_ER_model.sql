@@ -42,7 +42,7 @@ go
 ********************************************************************************
 /*create tables of different roles*/
 drop table passivemember /*in case there are existed tables with the same name*/ 
-****you don't need to use this sentence,if you are sure there are no existed tables with same name*****
+****you do not need to use this sentence,if you are sure there are no existed tables with same name*****
 *******************************************************************************
 create table Passivemember (
 MemberID Char(15)  primary key not null, /*The memberID is genarated by the system randomly and be assigned to members*/
