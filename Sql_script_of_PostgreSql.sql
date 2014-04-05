@@ -1,3 +1,5 @@
+I have made a lot of modifications based on the sql scripts of MySql, include some combination of tables and modifications
+of attributes, the size of data types, etc. So I suggest you to use PostgreSql with this version of sql script.
 Firstly, you should create database; Then you can paste all the scripts from "create table feedback" at one time
 by removing the star line; [after connect to the pgAdmin III， you can open the "Query", paste them on it]
 ********************************************************************
