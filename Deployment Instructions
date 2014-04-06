@@ -1,0 +1,302 @@
+[1]Steps of how to deploy sql scripts on Mysql:
+http://www.dcc.fc.up.pt/~pbrandao/aulas/0203/bdm/docs/mysql/manual_Installing.html
+1. you should download the mysql from internet first;
+
+2. select the "typical" installation, and remember where the "MySQL" folder is;
+
+3. open the command prompt(typing "cmd"), and open the folder of "MySQL", for example: you can type 
+"cd C:\Program Files\MySQL\bin";
+
+4. after open it, you should type "mysql -uroot -p",then you will see it ask you input the password,
+because you don't have password when you first open it, so ignore the "input password", just press
+"enter", you can see >mysql;
+
+5. then you can copy the scripts, and paste them on it, before you press"enter", you should add ";".
+attention: don't paste all of the scripts one time, it should be divided into several parts, I will make note on the 
+sql scripts.
+
+6. You can check them use some "select" sentences.
+
+[2]If you want to use the script on PostgreSql on Linux OS, then you can do as follow instructions:
+
+PostgreSQL Linux Installation and use booklet
+
+1. setting
+
+1 ，Download any version of PostgreSQL For Linux X86_64
+
+
+2 ，installation
+
+[root@imdba.cn ~]# ./postgresql-8.4.1-1-linux-x64.bin –mode text 
+—————————————————————————- 
+Welcome to the PostgreSQL Setup Wizard. 
+—————————————————————————- 
+Please specify the directory where PostgreSQL will be installed. 
+Installation Directory [/opt/PostgreSQL/8.4]: /home/PostgreSQL/8.4 
+—————————————————————————- 
+Please select a directory under which to store your data. 
+Data Directory [/home/PostgreSQL/8.4/data]: 
+—————————————————————————- 
+Please provide a password for the database superuser (postgres). A locked Unix user account (postgres) will be created if not present. 
+Password :[ input password] 
+Retype password :[ retype password] 
+—————————————————————————- 
+Please select the port number the server should listen on. 
+Port [5432]:[ default port, just press "Enter"] 
+[616] yi_US 
+[617] yi_US.utf8 
+[618] zh_CN 
+[619] zh_CN.utf8 
+[620] zh_HK 
+[621] zh_HK.utf8 
+[622] zh_SG 
+[623] zh_SG.utf8 
+[624] zh_TW 
+[625] zh_TW.euctw 
+[626] zh_TW.utf8 
+[627] zu_ZA 
+[628] zu_ZA.iso88591 
+[629] zu_ZA.utf8 
+Please choose an option [1] :619[ default data collection] 
+Install pl/pgsql in template1 database? [Y/n]: n 
+—————————————————————————- 
+Setup is now ready to begin installing PostgreSQL on your computer. 
+Do you want to continue? [Y/n]: y
+—————————————————————————- 
+Please wait while Setup installs PostgreSQL on your computer. 
+Installing 
+0% ______________ 50% ______________ 100% 
+######################################## 
+—————————————————————————- 
+Setup has finished installing PostgreSQL on your computer. 
+Launch Stack Builder at exit? 
+Stack Builder may be used to download and install additional tools, drivers and applications to complement your PostgreSQL installation. [Y/n]: y
+
+3 ，setting user and environment variables etc.
+
+[root@imdba.cn ~]# cp .bash_profile .bashrc /home/PostgreSQL/8.4/ 
+cp: overwrite `/home/PostgreSQL/8.4/.bash_profile’? y 
+cp: overwrite `/home/PostgreSQL/8.4/.bashrc’? y 
+[root@imdba.cn ~]# chown -R postgres.postgres /home/PostgreSQL/* 
+[root@imdba.cn ~]# ls -ltr /home/PostgreSQL/8.4/.bash* 
+-rw-r–r– 1 postgres postgres 174 Nov 10 19:18 /home/PostgreSQL/8.4/.bash_profile 
+-rw-r–r– 1 postgres postgres 176 Nov 10 19:18 /home/PostgreSQL/8.4/.bashrc 
+[root@imdba.cn ~]# su – postgres
+
+4, initialization of database，similar with MySQL's installdb
+
+[root@imdba.cn data]$ initdb -D /home/PostgreSQL/8.4/data/ 
+The files belonging to this database system will be owned by user "postgres". 
+This user must also own the server process. 
+The database cluster will be initialized with locale en_US. 
+The default database encoding has accordingly been set to LATIN1. 
+The default text search configuration will be set to "english". 
+fixing permissions on existing directory /home/PostgreSQL/8.4/data … ok 
+creating subdirectories … ok 
+selecting default max_connections … 100 
+selecting default shared_buffers … 32MB 
+creating configuration files … ok 
+creating template1 database in /home/PostgreSQL/8.4/data/base/1 … o 
+initializing pg_authid … ok 
+initializing dependencies … ok 
+creating system views … ok 
+loading system objects’ descriptions … ok 
+creating conversions … ok 
+creating dictionaries … ok 
+setting privileges on built-in objects … ok 
+creating information schema … ok 
+vacuuming database template1 … ok 
+copying template1 to template0 … ok 
+copying template1 to postgres … ok 
+WARNING: enabling "trust" authentication for local connections 
+You can change this by editing pg_hba.conf or using the -A option the 
+next time you run initdb. 
+Success. You can now start the database server using: 
+postgres -D /home/PostgreSQL/8.4/data 
+or 
+pg_ctl -D /home/PostgreSQL/8.4/data -l logfile start 
+[root@imdba.cn data]$
+
+5, run PostgreSQL Server backend service
+
+[root@imdba.cn data]$ pg_ctl -D /home/PostgreSQL/8.4/data -l logfile start 
+server starting 
+[root@imdba.cn data]$
+
+二，using method
+
+[root@imdba.cn data]$ psql 
+psql (8.4.1) 
+Type "help" for help. 
+postgres=# 
+[root@imdba.cn bin]$ ./createdb imdba 
+[root@imdba.cn bin]$ psql imdba 
+psql (8.4.1) 
+Type "help" for help. 
+imdba=# /l 
+                              List of databases 
+   Name    |  Owner   | Encoding | Collation | Ctype |   Access privileges 
+———–+———-+———-+———–+——-+———————– 
+imdba     | postgres | LATIN1   | en_US     | en_US | 
+postgres  | postgres | LATIN1   | en_US     | en_US | 
+template0 | postgres | LATIN1   | en_US     | en_US | =c/postgres  : postgres=CTc/postgres 
+template1 | postgres | LATIN1   | en_US     | en_US | =c/postgres  : postgres=CTc/postgres 
+(4 rows) 
+imdba=# 
+imdba=# /c postgres 
+psql (8.4.1) 
+You are now connected to database "postgres". 
+postgres=# /c imdba 
+psql (8.4.1) 
+You are now connected to database "imdba". 
+imdba=# create table imdba(id int4,name char(16)); 
+CREATE TABLE 
+imdba=# drop table imdba; 
+DROP TABLE 
+imdba=# create table t_imdba(id int4,name char(16)); 
+CREATE TABLE 
+imdba=# /d t_imdba 
+       Table "public.t_imdba" 
+Column |     Type      | Modifiers 
+——–+—————+———– 
+id     | integer       | 
+name   | character(16) |
+
+imdba=# select * from t_imdba; 
+id |       name 
+—-+—————— 
+  1 | imdba 
+  2 | imdba 
+  3 | imdba 
+(3 rows) 
+imdba=# create index idx_t_imdba on t_imdba(id); 
+CREATE INDEX 
+imdba=# /di 
+                 List of relations 
+Schema |    Name     | Type  |  Owner   |  Table 
+——–+————-+——-+———-+——— 
+public | idx_t_imdba | index | postgres | t_imdba 
+(1 row)
+
+imdba=# insert into t_imdba values(2,’imdba’); 
+INSERT 0 1 
+imdba=# insert into t_imdba values(2,’imdba’); 
+INSERT 0 1 
+imdba=# insert into t_imdba values(2,’imdba’); 
+INSERT 0 1 
+imdba=# insert into t_imdba values(2,’imdba’); 
+INSERT 0 1 
+imdba=# insert into t_imdba values(2,’imdba’); 
+INSERT 0 1 
+imdba=# insert into t_imdba values(2,’imdba’); 
+INSERT 0 1 
+imdba=# select * from t_imdba; 
+id |       name 
+—-+—————— 
+  1 | imdba 
+  2 | imdba 
+  3 | imdba 
+  2 | imdba 
+  2 | imdba 
+  2 | imdba 
+  2 | imdba 
+  2 | imdba 
+  2 | imdba 
+(9 rows)
+
+imdba=# /q
+
+1 ，database backup
+
+
+[@tc_10.11.54.21_cnc bin]$ pg_dump 
+pg_dump     pg_dumpall 
+[root@imdba.cn bin]$ pg_dump imdba >imdba.pgsql 
+[root@imdba.cn bin]$ more imdba.pgsql 
+– 
+– PostgreSQL database dump 
+– 
+SET statement_timeout = 0; 
+SET client_encoding = ‘LATIN1′; 
+SET standard_conforming_strings = off; 
+SET check_function_bodies = false; 
+SET client_min_messages = warning; 
+SET escape_string_warning = off; 
+SET search_path = public, pg_catalog; 
+SET default_tablespace = ”; 
+SET default_with_oids = false; 
+– 
+– Name: t_imdba; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+– 
+CREATE TABLE t_imdba ( 
+    id integer, 
+    name character(16) 
+); 
+ALTER TABLE public.t_imdba OWNER TO postgres; 
+– 
+– Data for Name: t_imdba; Type: TABLE DATA; Schema: public; Owner: postgres 
+– 
+COPY t_imdba (id, name) FROM stdin; 
+1       imdba 
+2       imdba 
+3       imdba 
+2       imdba 
+2       imdba 
+2       imdba 
+2       imdba 
+2       imdba 
+2       imdba 
+/. 
+– 
+– Name: idx_t_imdba; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+–
+
+CREATE INDEX idx_t_imdba ON t_imdba USING btree (id); 
+– 
+– Name: public; Type: ACL; Schema: -; Owner: postgres 
+– 
+REVOKE ALL ON SCHEMA public FROM PUBLIC; 
+REVOKE ALL ON SCHEMA public FROM postgres; 
+GRANT ALL ON SCHEMA public TO postgres; 
+GRANT ALL ON SCHEMA public TO PUBLIC; 
+– 
+– PostgreSQL database dump complete 
+–
+
+2 ，database recovery 
+
+
+[root@imdba.cn bin]$ dropdb  imdba 
+[root@imdba.cn bin]$ psql imdba < imdba.pgsql 
+[root@imdba.cn bin]$ ./createdb imdba 
+[root@imdba.cn bin]$ psql imdba < imdba.pgsql 
+SET 
+SET 
+SET 
+SET 
+SET 
+SET 
+SET 
+SET 
+SET 
+CREATE TABLE 
+ALTER TABLE 
+CREATE INDEX 
+REVOKE 
+REVOKE 
+GRANT 
+GRANT
+
+[3]The steps of deploying SQL scripts on Sql Server:
+
+1) download SQL Server 2000 (Or any other version of Sql Server) on the virtual machine;
+
+2) install Sql server 2000, and set the server by yourself;
+
+3) run the server, and open the Sql Query analyzer;
+
+4) paste the Sql scripts on the Sql Query analyzer, and deploy it;
+
+5) then the database will be built, you can use "select * from Passivemember" to check if the database was built (because
+I have insert one piece of data into the "passivemember" table of the databse).
