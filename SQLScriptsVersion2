@@ -697,7 +697,7 @@ ALTER TABLE productstates
   OWNER TO postgres;
 COMMENT ON COLUMN productstates.productstate IS '0- available
 1- reserved
-2- sold;
+2- sold';
 
 
 ******************************************************
