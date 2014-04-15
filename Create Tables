@@ -1,0 +1,356 @@
+-- Table: "ApproveOrder"
+
+-- DROP TABLE "ApproveOrder";
+
+CREATE TABLE "ApproveOrder"
+(
+  "ProductID" character varying(15)[],
+  productname character varying(20)[],
+  approvaldate date,
+  producttimechecks integer
+  
+);
+
+-- Table: "Feedbacks"
+
+-- DROP TABLE "Feedbacks";
+
+CREATE TABLE "Feedbacks"
+(
+  feedback text NOT NULL, -- a detail of positive and negative feedbacks related to the user
+  feedbackid character varying(15) NOT NULL, -- unique for each feedbacks
+  memberid character varying(15)[] NOT NULL
+);
+
+-- Table: "JobPosting"
+
+-- DROP TABLE "JobPosting";
+
+CREATE TABLE "JobPosting"
+(
+  accountno character varying(15)[] NOT NULL, -- unique for each active member
+  jobcategory character varying(20)[] NOT NULL, -- division of jobs according to their nature
+  jobid character varying(15)[] NOT NULL, -- according to when the job was posted, a unique ID is given for each job
+  memberid character varying(15)[] NOT NULL,
+  postingdate date NOT NULL  -- Date when the job was posted
+);
+
+-- Table: "Jobs"
+
+-- DROP TABLE "Jobs";
+
+CREATE TABLE "Jobs"
+(
+  offererid character varying(15)[] NOT NULL, -- id of the person who is offering the job
+  jobcategory character varying(20)[] NOT NULL,
+  jobid character varying(15)[] NOT NULL, -- unique for each job posted
+  availabledate date NOT NULL, -- date from which the job is available to carry out
+  jobduration numeric(6,2) NOT NULL, -- date within which the job is available
+  jobdescription text,
+  jobrequirements text NOT NULL, -- special qualities needed for the job
+  finishdate date NOT NULL, -- date when the job is expected to finish
+  jobaddress text NOT NULL, -- place to do the job
+  jobname character varying(50)[] NOT NULL -- specification of the job
+);
+
+-- Table: "OrderDetailsForCustomer"
+
+-- DROP TABLE "OrderDetailsForCustomer";
+
+CREATE TABLE "OrderDetailsForCustomer"
+(
+  buyerid character varying(15)[] NOT NULL,
+  sellerid character varying(15)[] NOT NULL,
+  productid character varying(15)[] NOT NULL,
+  approvaldate date,
+  pricetimechecks integer,
+  productname character varying(20)[]
+);
+
+-- Table: "ProductCart"
+
+-- DROP TABLE "ProductCart";
+
+CREATE TABLE "ProductCart"
+(
+  productname character varying(20)[],
+  productid character varying(15)[],
+  productcategory character varying(20)[],
+  producttimechecks integer,
+  buyerid character varying(15)[] NOT NULL, -- account id of the interested buyer
+  totalsoldnumber integer, -- total number of products selected by the buyer
+  totaltimechecks integer
+);
+
+-- Table: "ProductList"
+
+-- DROP TABLE "ProductList";
+
+CREATE TABLE "ProductList"
+(
+  productname character varying(15)[],
+  productid character varying(15)[],
+  productcategory character varying(20)[],
+  producttimechecks integer
+);
+
+
+-- Table: "Products"
+
+-- DROP TABLE "Products";
+
+CREATE TABLE "Products"
+(
+  sellerid character varying(15)[], -- the person who posts products for sale
+  productcategory character varying(20)[], -- categories to differentiate different products
+  productid character varying(15)[] NOT NULL, -- unique for each product
+  productdescription character varying(200)[], -- details of the product
+  selleraddress character varying(25)[],
+  productname character varying(20)[], -- name of the product
+  producttimechecks integer,
+  productcondition boolean, -- 0- good...
+  shippingcondition boolean,
+  shippingcost integer,
+  deliveryduration integer,
+  numberavailable integer
+);
+
+-- Table: "SkillPosting"
+
+-- DROP TABLE "SkillPosting";
+
+CREATE TABLE "SkillPosting"
+(
+  memberid character varying(15)[] NOT NULL, -- unique for each active member
+  accountno character varying(15)[] NOT NULL, -- unique for each active member. must use this during transactions
+  postingdate date NOT NULL, -- Date when the skill was posted
+  spcomment text, -- About timing and other criteria
+  skillid character varying(15)[] NOT NULL, -- unique for each different skill posted
+  skillcategory character varying(20)[] NOT NULL -- division of skill according to their nature
+);
+
+-- Table: "Skills"
+
+-- DROP TABLE "Skills";
+
+CREATE TABLE "Skills"
+(
+  skillid character varying(15)[] NOT NULL, -- unique for each skill
+  skilldescription text NOT NULL, -- detail of the skills
+  skillname character varying(20)[] NOT NULL,
+  skillcategory character varying(20)[] NOT NULL,
+  workerid character varying(15)[] NOT NULL-- unique for each active member
+);
+
+-- Table: "TimeCheckAlteration"
+
+-- DROP TABLE "TimeCheckAlteration";
+
+CREATE TABLE "TimeCheckAlteration"
+(
+  buyerid character varying(15)[] NOT NULL,
+  sellerid character varying(15)[] NOT NULL,
+  producttimechecks integer,
+  transactionid character varying(15)[] NOT NULL,
+  transactiondate date
+);
+
+-- Table: confirmation
+
+-- DROP TABLE confirmation;
+
+CREATE TABLE confirmation
+(
+  workerid character varying(15)[] NOT NULL,
+  offererid character varying(15)[] NOT NULL,
+  jobid character varying(15)[] NOT NULL,
+  confirmationdate date NOT NULL -- date when the agreement is done between offerer and worker
+);
+
+-- Table: jobstatus
+
+-- DROP TABLE jobstatus;
+
+CREATE TABLE jobstatus
+(
+  jobid character varying(15)[] NOT NULL,
+  jobstatus smallint NOT NULL DEFAULT 0-- 0=free, 1=reserved, 2=completed
+);
+
+-- Table: member
+
+-- DROP TABLE member;
+
+CREATE TABLE member
+(
+  memberid character varying(15)[] NOT NULL, -- it is the primary key for identify each passivemember.
+  username character varying(25)[] NOT NULL, -- It is the name of passivemember
+  ppassword character varying(16)[] NOT NULL, -- It is password when member login, the length of it should >6 and <16
+  age smallint NOT NULL,
+  gender boolean NOT NULL DEFAULT true, -- true="Male", false="Female"
+  address text NOT NULL, -- It is the recent address of passivemember.
+  email character varying(30)[] NOT NULL, -- The email address should contains "@".
+  phonenumber character varying(20) NOT NULL, -- it is the phone number which can be reached.
+  paymentstatus boolean NOT NULL DEFAULT true, -- It is the payment status of membership fee, true=paid, false=unpaid.
+  fiftyfivemember boolean NOT NULL DEFAULT true, -- If your age>55, then you are 55+Member, the status is true, otherwise, the status is false.
+  postalcode character varying(15)[] NOT NULL, -- It is the postal code for your recent address.
+  birthday date NOT NULL,
+  roleid smallint NOT NULL DEFAULT 3 -- 1=Active user (non-55+account), 2=Active user (55+account), 3=Passive user (non-55+account), 4=Passive user (55+account), 5=teller, 6=system administator
+);
+
+-- Table: modifytimecheck
+
+-- DROP TABLE modifytimecheck;
+
+CREATE TABLE modifytimecheck
+(
+  offererid character varying(15)[] NOT NULL, -- specific ID for each job provider
+  hours numeric(6,2) NOT NULL, -- total amount of hours agreed to be paid to the worker
+  completiondate date NOT NULL, -- date the job is completed or agreed to be completed
+  transactionid character varying(15)[] NOT NULL -- unique for each transaction
+);
+
+-- Table: offerercontact
+
+-- DROP TABLE offerercontact;
+
+CREATE TABLE offerercontact
+(
+  offereid character varying(15)[] NOT NULL,
+  email text NOT NULL,
+  address text NOT NULL,
+  phonenumber character varying(20)[] NOT NULL
+);
+
+-- Table: personalaccount
+
+-- DROP TABLE personalaccount;
+
+CREATE TABLE personalaccount
+(
+  accountno character varying(15)[] NOT NULL, -- It is your personal account number which is assigned randomly by system.
+  memberid character varying(15)[] NOT NULL, -- It is the foreign key which can connect the member table.
+  sumhours numeric(6,2)[] NOT NULL, -- It is the sum of hours which earned by you. After you pay membership fee, you will get three hours at the first time.
+  transactionid character varying(15)[] NOT NULL -- It is ID of each transaction
+);
+
+-- Table: productposting
+
+-- DROP TABLE productposting;
+
+CREATE TABLE productposting
+(
+  memberid character varying(15)[] NOT NULL,
+  postingdate date, -- date when the product was posted for sale
+  productid character varying(15)[] NOT NULL, -- id for the product, each unique
+  productcategory character varying(20)[],
+  productitmechecks integer, -- price of the product in terms of time checks
+  productname character varying(20)[]
+);
+
+-- Table: productstates
+
+-- DROP TABLE productstates;
+
+CREATE TABLE productstates
+(
+  productid character varying(15)[],
+  productname character varying(20)[],
+  productstate boolean -- 0- available...
+);
+
+-- Table: profileverification
+
+-- DROP TABLE profileverification;
+
+CREATE TABLE profileverification
+(
+  memberid character varying(15)[] NOT NULL,
+  tellerid character varying(15)[] NOT NULL,
+  verificationdate date NOT NULL, -- it is the date of verification
+  verificationstatus boolean NOT NULL DEFAULT true -- true=pass;...
+);
+
+-- Table: receipt
+
+-- DROP TABLE receipt;
+
+CREATE TABLE receipt
+(
+  "offererID" character varying(15)[] NOT NULL,
+  recipientid character varying(15)[] NOT NULL,
+  recipientaccountno character varying(15)[] NOT NULL, -- It is the account number of recipient.
+  offereraccountno character varying[] NOT NULL, -- it is the account number of offerer.
+  transactionid character varying(15)[] NOT NULL,
+  workinghours numeric(6,2)[] NOT NULL,
+  signdate date NOT NULL -- it is the date of signing the receipt.
+);
+
+-- Table: receiptmodification
+
+-- DROP TABLE receiptmodification;
+
+CREATE TABLE receiptmodification
+(
+  tellerid character varying(15)[] NOT NULL,
+  transactionid character varying(15)[] NOT NULL,
+  ddescription text, -- it is the description about where and what you have modified.
+  modificationdate date NOT NULL -- it is the date of receipt modification
+);
+
+-- Table: supervision
+
+-- DROP TABLE supervision;
+
+CREATE TABLE supervision
+(
+  tellerid character varying(15)[] NOT NULL,
+  memberid character varying(15)[] NOT NULL,
+  feedbackid character varying(15) NOT NULL
+);
+
+-- Table: systemadministrator
+
+-- DROP TABLE systemadministrator;
+
+CREATE TABLE systemadministrator
+(
+  adminid character varying(15)[] NOT NULL, -- It is the ID of administrator.
+  adminname character varying(15)[] NOT NULL, -- the name of administrator
+  ppassword character varying(16)[] NOT NULL, -- the length of password should >6 and <16
+  email character varying(30)[] NOT NULL, -- should contain @
+  phonenumber character varying(20)[] NOT NULL,
+  roleid smallint NOT NULL DEFAULT 6 -- 1=Active user (non-55+account), 2=Active user (55+account), 3=Passive user (non-55+account), 4=Passive user (55+account),5=teller, 6=system administator
+);
+
+-- Table: teller
+
+-- DROP TABLE teller;
+
+CREATE TABLE teller
+(
+  tellerid character varying(15)[] NOT NULL, -- It is the ID which assigned by system randomly of teller.
+  tellername character varying(25)[] NOT NULL, -- it is the name of teller
+  ppassword character varying(16)[] NOT NULL, -- the length of it should >6 and <16
+  email character varying(30)[] NOT NULL,
+  phonenumber character varying(20)[] NOT NULL,
+  roleid smallint NOT NULL DEFAULT 4-- 1=Active user (non-55+account), 2=Active user (55+account), 3=Passive user (non-55+account), 4=Passive user (55+account),5=teller, 6=system administator
+);
+
+-- Table: transaction
+
+-- DROP TABLE transaction;
+
+CREATE TABLE transaction
+(
+  transactionid character varying(15)[] NOT NULL, -- it is the id which assigned by system randomly of each transaction.
+  transactionname character varying(50)[] NOT NULL,
+  ddescription text, -- it is the description of each transaction.
+  workinghour numeric(6,2)[] NOT NULL, -- each transaction has specific hours used for exchanging.
+  offererid character varying(15)[] NOT NULL, -- it is the ID of member who provide the job.
+  recipientid character varying(15)[] NOT NULL, -- it is the ID of member who recieve the job.
+  transactionstatus boolean NOT NULL DEFAULT true, -- true=done; false=undone
+  transactiontime date NOT NULL -- it is the time of when transaction is done
+);
+
+
