@@ -1,3 +1,16 @@
+*********Create Database first*************************
+-- Database: "TimeBankDB"
+
+-- DROP DATABASE "TimeBankDB";
+
+CREATE DATABASE "TimeBankDB"
+  WITH OWNER = postgres
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'English_United States.1252'
+       LC_CTYPE = 'English_United States.1252'
+       CONNECTION LIMIT = -1;
+*********Create Tables without constraints and indexes********
 -- Table: "ApproveOrder"
 
 -- DROP TABLE "ApproveOrder";
