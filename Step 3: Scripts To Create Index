@@ -1,0 +1,211 @@
+-- Index: "fki_ApproveOrderFK"
+
+-- DROP INDEX "fki_ApproveOrderFK";
+
+CREATE INDEX "fki_ApproveOrderFK"
+  ON "ApproveOrder"
+  USING btree
+  ("ProductID" COLLATE pg_catalog."default");
+
+-- Index: "fki_OrderDetailsForCustomerFK2"
+
+-- DROP INDEX "fki_OrderDetailsForCustomerFK2";
+
+CREATE INDEX "fki_OrderDetailsForCustomerFK2"
+  ON "OrderDetailsForCustomer"
+  USING btree
+  (sellerid COLLATE pg_catalog."default");
+
+-- Index: "fki_OrderDetailsForCustomerFK3"
+
+-- DROP INDEX "fki_OrderDetailsForCustomerFK3";
+
+CREATE INDEX "fki_OrderDetailsForCustomerFK3"
+  ON "OrderDetailsForCustomer"
+  USING btree
+  (productid COLLATE pg_catalog."default");
+
+-- Index: "fki_ProductCartFK"
+
+-- DROP INDEX "fki_ProductCartFK";
+
+CREATE INDEX "fki_ProductCartFK"
+  ON "ProductCart"
+  USING btree
+  (productid COLLATE pg_catalog."default");
+
+-- Index: "fki_ProductListFK"
+
+-- DROP INDEX "fki_ProductListFK";
+
+CREATE INDEX "fki_ProductListFK"
+  ON "ProductList"
+  USING btree
+  (productid COLLATE pg_catalog."default");
+
+-- Index: "fki_ProductFK"
+
+-- DROP INDEX "fki_ProductFK";
+
+CREATE INDEX "fki_ProductFK"
+  ON "Products"
+  USING btree
+  (sellerid COLLATE pg_catalog."default");
+-- Index: "fki_SkillPostingFK"
+
+-- DROP INDEX "fki_SkillPostingFK";
+
+CREATE INDEX "fki_SkillPostingFK"
+  ON "SkillPosting"
+  USING btree
+  (memberid COLLATE pg_catalog."default");
+
+-- Index: "fki_SkillPostingFK2"
+
+-- DROP INDEX "fki_SkillPostingFK2";
+
+CREATE INDEX "fki_SkillPostingFK2"
+  ON "SkillPosting"
+  USING btree
+  (accountno COLLATE pg_catalog."default");
+-- Index: "fki_SkillPostingFK3"
+
+-- DROP INDEX "fki_SkillPostingFK3";
+
+CREATE INDEX "fki_SkillPostingFK3"
+  ON "SkillPosting"
+  USING btree
+  (skillid COLLATE pg_catalog."default");
+
+-- Index: "fki_SkillsFK"
+
+-- DROP INDEX "fki_SkillsFK";
+
+CREATE INDEX "fki_SkillsFK"
+  ON "Skills"
+  USING btree
+  (workerid COLLATE pg_catalog."default");
+-- Index: "fki_TimeCheckAlterationFK2"
+
+-- DROP INDEX "fki_TimeCheckAlterationFK2";
+
+CREATE INDEX "fki_TimeCheckAlterationFK2"
+  ON "TimeCheckAlteration"
+  USING btree
+  (sellerid COLLATE pg_catalog."default");
+
+-- Index: "fki_TimeCheckAlterationFK3"
+
+-- DROP INDEX "fki_TimeCheckAlterationFK3";
+
+CREATE INDEX "fki_TimeCheckAlterationFK3"
+  ON "TimeCheckAlteration"
+  USING btree
+  (transactionid COLLATE pg_catalog."default");
+
+-- Index: "fki_ConfirmationFK"
+
+-- DROP INDEX "fki_ConfirmationFK";
+
+CREATE INDEX "fki_ConfirmationFK"
+  ON confirmation
+  USING btree
+  (workerid COLLATE pg_catalog."default");
+-- Index: "fki_ConfirmationFK2"
+
+-- DROP INDEX "fki_ConfirmationFK2";
+
+CREATE INDEX "fki_ConfirmationFK2"
+  ON confirmation
+  USING btree
+  (offererid COLLATE pg_catalog."default");
+
+-- Index: "fki_ConfirmationFK3"
+
+-- DROP INDEX "fki_ConfirmationFK3";
+
+CREATE INDEX "fki_ConfirmationFK3"
+  ON confirmation
+  USING btree
+  (jobid COLLATE pg_catalog."default");
+
+-- Index: "fki_JobStatusFK"
+
+-- DROP INDEX "fki_JobStatusFK";
+
+CREATE INDEX "fki_JobStatusFK"
+  ON jobstatus
+  USING btree
+  (jobid COLLATE pg_catalog."default");
+-- Index: "fki_ModifyTimeCheckFK"
+
+-- DROP INDEX "fki_ModifyTimeCheckFK";
+
+CREATE INDEX "fki_ModifyTimeCheckFK"
+  ON modifytimecheck
+  USING btree
+  (offererid COLLATE pg_catalog."default");
+-- Index: "fki_ModifyTimeCheckFK1"
+
+-- DROP INDEX "fki_ModifyTimeCheckFK1";
+
+CREATE INDEX "fki_ModifyTimeCheckFK1"
+  ON modifytimecheck
+  USING btree
+  (offererid COLLATE pg_catalog."default");
+-- Index: "fki_ModifyTimeCheckFK2"
+
+-- DROP INDEX "fki_ModifyTimeCheckFK2";
+
+CREATE INDEX "fki_ModifyTimeCheckFK2"
+  ON modifytimecheck
+  USING btree
+  (transactionid COLLATE pg_catalog."default");
+-- Index: "fki_OffererContactFK"
+
+-- DROP INDEX "fki_OffererContactFK";
+
+CREATE INDEX "fki_OffererContactFK"
+  ON offerercontact
+  USING btree
+  (offereid COLLATE pg_catalog."default");
+-- Index: "fki_ProductPostingFK"
+
+-- DROP INDEX "fki_ProductPostingFK";
+
+CREATE INDEX "fki_ProductPostingFK"
+  ON productposting
+  USING btree
+  (productid COLLATE pg_catalog."default");
+-- Index: "fki_ProductStatesFK"
+
+-- DROP INDEX "fki_ProductStatesFK";
+
+CREATE INDEX "fki_ProductStatesFK"
+  ON productstates
+  USING btree
+  (productid COLLATE pg_catalog."default");
+-- Index: "fki_SupervisionFK"
+
+-- DROP INDEX "fki_SupervisionFK";
+
+CREATE INDEX "fki_SupervisionFK"
+  ON supervision
+  USING btree
+  (tellerid COLLATE pg_catalog."default");
+-- Index: "fki_SupervisionFK2"
+
+-- DROP INDEX "fki_SupervisionFK2";
+
+CREATE INDEX "fki_SupervisionFK2"
+  ON supervision
+  USING btree
+  (memberid COLLATE pg_catalog."default");
+-- Index: "fki_SupervisionFK3"
+
+-- DROP INDEX "fki_SupervisionFK3";
+
+CREATE INDEX "fki_SupervisionFK3"
+  ON supervision
+  USING btree
+  (feedbackid COLLATE pg_catalog."default");
