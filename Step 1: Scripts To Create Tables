@@ -205,8 +205,7 @@ CREATE TABLE member
   gender boolean NOT NULL DEFAULT true, -- true="Male", false="Female"
   address text NOT NULL, -- It is the recent address of passivemember.
   city character varying(15)[] NOT NULL,
-  country character varying(15)[] NOT NULL, -- 
-  postalcode integer NOT NULL, -- 
+  country character varying(15)[] NOT NULL, --
   email character varying(30)[] NOT NULL, -- The email address should contains "@".
   phonenumber character varying(20) NOT NULL, -- it is the phone number which can be reached.
   paymentstatus boolean NOT NULL DEFAULT true, -- It is the payment status of membership fee, true=paid, false=unpaid.
