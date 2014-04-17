@@ -197,11 +197,16 @@ CREATE TABLE jobstatus
 CREATE TABLE member
 (
   memberid character varying(15)[] NOT NULL, -- it is the primary key for identify each passivemember.
+  firstname character varying(15)[] NOT NULL,
+  lastname character varying(15)[] NOT NULL,
   username character varying(25)[] NOT NULL, -- It is the name of passivemember
   ppassword character varying(16)[] NOT NULL, -- It is password when member login, the length of it should >6 and <16
   age smallint NOT NULL,
   gender boolean NOT NULL DEFAULT true, -- true="Male", false="Female"
   address text NOT NULL, -- It is the recent address of passivemember.
+  city character varying(15)[] NOT NULL,
+  country character varying(15)[] NOT NULL, -- 
+  postalcode integer NOT NULL, -- 
   email character varying(30)[] NOT NULL, -- The email address should contains "@".
   phonenumber character varying(20) NOT NULL, -- it is the phone number which can be reached.
   paymentstatus boolean NOT NULL DEFAULT true, -- It is the payment status of membership fee, true=paid, false=unpaid.
@@ -243,6 +248,9 @@ CREATE TABLE personalaccount
 (
   accountno character varying(15)[] NOT NULL, -- It is your personal account number which is assigned randomly by system.
   memberid character varying(15)[] NOT NULL, -- It is the foreign key which can connect the member table.
+  firstname character varying(15)[] NOT NULL,
+  lastname character varying(15)[] NOT NULL,
+  username character varying(25)[] NOT NULL,
   sumhours numeric(6,2)[] NOT NULL, -- It is the sum of hours which earned by you. After you pay membership fee, you will get three hours at the first time.
   transactionid character varying(15)[] NOT NULL -- It is ID of each transaction
 );
