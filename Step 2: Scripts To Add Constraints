@@ -1,3 +1,30 @@
+-- Constraint: "ApproveOrderPK"
+
+-- ALTER TABLE "ApproveOrder" DROP CONSTRAINT "ApproveOrderPK";
+
+ALTER TABLE "ApproveOrder"
+  ADD CONSTRAINT "ApproveOrderPK" PRIMARY KEY("ProductID");
+  
+  -- Constraint: "JobPostingPK"
+
+-- ALTER TABLE "JobPosting" DROP CONSTRAINT "JobPostingPK";
+
+ALTER TABLE "JobPosting"
+  ADD CONSTRAINT "JobPostingPK" PRIMARY KEY(jobid);
+  
+  -- Constraint: "SkillPostingPK"
+
+-- ALTER TABLE "SkillPosting" DROP CONSTRAINT "SkillPostingPK";
+
+ALTER TABLE "SkillPosting"
+  ADD CONSTRAINT "SkillPostingPK" PRIMARY KEY(skillid);
+-- Constraint: "ConfirmationPK"
+
+-- ALTER TABLE confirmation DROP CONSTRAINT "ConfirmationPK";
+
+ALTER TABLE confirmation
+  ADD CONSTRAINT "ConfirmationPK" PRIMARY KEY(confirmationdate);
+  
 -- Constraint: "MemberPK"
 
 -- ALTER TABLE member DROP CONSTRAINT "MemberPK";
@@ -35,6 +62,26 @@ ALTER TABLE "Products"
   ADD CONSTRAINT "ProductFK" FOREIGN KEY (sellerid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
+
+-- Constraint: "JobStatus"
+
+-- ALTER TABLE jobstatus DROP CONSTRAINT "JobStatus";
+
+ALTER TABLE jobstatus
+  ADD CONSTRAINT "JobStatus" PRIMARY KEY(jobid);
+  -- Constraint: "ProfileVerificationPK"
+
+-- ALTER TABLE profileverification DROP CONSTRAINT "ProfileVerificationPK";
+
+ALTER TABLE profileverification
+  ADD CONSTRAINT "ProfileVerificationPK" PRIMARY KEY(tellerid);
+
+  -- Constraint: "ProductStates"
+
+-- ALTER TABLE productstates DROP CONSTRAINT "ProductStates";
+
+ALTER TABLE productstates
+  ADD CONSTRAINT "ProductStates" PRIMARY KEY(productid);
 
 -- Constraint: "SkillsPK"
 
