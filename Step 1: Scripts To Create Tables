@@ -1,5 +1,4 @@
 
-
 -- Database: "TimeBankDB"
 
 -- DROP DATABASE "TimeBankDB";
@@ -261,7 +260,7 @@ CREATE TABLE productposting
   postingdate date, -- date when the product was posted for sale
   productid uuid NOT NULL, -- id for the product, each unique
   productcategory character varying(20) NOT NULL,
-  productitmechecks integer NOT NULL, -- price of the product in terms of time checks
+  productimechecks integer NOT NULL, -- price of the product in terms of time checks
   productname character varying(20)NOT NULL
 );
 
