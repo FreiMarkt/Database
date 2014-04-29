@@ -197,7 +197,6 @@ CREATE TABLE member
   firstname character varying(15) NOT NULL,
   lastname character varying(15) NOT NULL,
   ppassword character varying(30)NOT NULL, -- It is password when member login, the length of it should >6 and <16
-  age smallint,
   gender character varying (10),
   address text NOT NULL, -- It is the recent address of passivemember.
   city character varying(15) NOT NULL,
