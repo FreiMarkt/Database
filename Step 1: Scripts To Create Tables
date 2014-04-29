@@ -1,4 +1,3 @@
-
 -- Database: "TimeBankDB"
 
 -- DROP DATABASE "TimeBankDB";
@@ -270,8 +269,8 @@ CREATE TABLE productposting
 
 CREATE TABLE productstates
 (
-  productid uuid,
-  productname character varying(20),
+  productid uuid NOT NULL,
+  productname character varying(20)NOT NULL,
   productstate boolean -- 0- available...
 );
 
@@ -364,7 +363,7 @@ CREATE TABLE transaction
   ddescription text, -- it is the description of each transaction.
   workinghour numeric(6,2)NOT NULL, -- each transaction has specific hours used for exchanging.
   offererid uuid NOT NULL, -- it is the ID of member who provide the job.
-  recipientid uuidNOT NULL, -- it is the ID of member who recieve the job.
+  recipientid uuid NOT NULL, -- it is the ID of member who recieve the job.
   transactionstatus boolean NOT NULL DEFAULT true, -- true=done; false=undone
   transactiontime date NOT NULL -- it is the time of when transaction is done
 );
