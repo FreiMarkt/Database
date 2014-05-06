@@ -27,11 +27,22 @@ CREATE TABLE "approverder"
 
 CREATE TABLE "feedbacks"
 (
-  feedback text NOT NULL, -- a detail of positive and negative feedbacks related to the user
-  feedbackid uuid NOT NULL, -- unique for each feedbacks
-  memberid uuid NOT NULL
+  feedback text NOT NULL,
+  feedbackid uuid NOT NULL,
+  memberid uuid NOT NULL,
+  feedbacktitle character varying(20),
+  CONSTRAINT "FeedbackPK" PRIMARY KEY (feedbackid),
+  CONSTRAINT "FeedbackFK" FOREIGN KEY (memberid)
+      REFERENCES "Member" (memberid) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE CASCADE
+)
+WITH (
+  OIDS=FALSE
 );
-
+ALTER TABLE "feedbacks"
+  OWNER TO postgres;
+  
+  
 -- Table: "jobposting"
 
 -- DROP TABLE "jobposting";
@@ -123,7 +134,8 @@ CREATE TABLE "products"
   shippingcondition boolean,
   shippingcost numeric(6,2),
   deliveryduration integer,
-  numberavailable integer
+  numberavailable integer,
+  productimage bytea -- image of the product
 );
 
 -- Table: "skillposting"
