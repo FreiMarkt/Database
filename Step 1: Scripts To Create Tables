@@ -366,3 +366,21 @@ CREATE TABLE transaction
   transactionstatus boolean NOT NULL DEFAULT true, -- true=done; false=undone
   transactiontime date NOT NULL -- it is the time of when transaction is done
 );
+
+-- Table: devices
+
+-- DROP TABLE devices;
+--  this table stores device registration id, that are used to 
+-- communicate with Google Cloud Messaging service
+-- deviceregistrationid is device identificator
+CREATE TABLE devices
+(
+  deviceid uuid NOT NULL DEFAULT uuid_generate_v4(),
+  inserttime timestamp without time zone NOT NULL DEFAULT now(),
+  deviceregistrationid text,
+  isactive boolean DEFAULT false,
+  CONSTRAINT "DevicesPK" PRIMARY KEY (deviceid)
+)
+WITH (
+  OIDS=FALSE
+);
