@@ -1,505 +1,505 @@
--- Constraint: "ApproveOrderPK"
+-- Constraint: "approveorderPK"
 
--- ALTER TABLE "ApproveOrder" DROP CONSTRAINT "ApproveOrderPK";
+-- ALTER TABLE "approveorder" DROP CONSTRAINT "approveorderPK";
 
-ALTER TABLE "ApproveOrder"
-  ADD CONSTRAINT "ApproveOrderPK" PRIMARY KEY("ProductID");
+ALTER TABLE "approveorder"
+  ADD CONSTRAINT "approveorderPK" PRIMARY KEY("ProductID");
   
-  -- Constraint: "JobPostingPK"
+  -- Constraint: "jobpostingPK"
 
--- ALTER TABLE "JobPosting" DROP CONSTRAINT "JobPostingPK";
+-- ALTER TABLE "jobposting" DROP CONSTRAINT "jobpostingPK";
 
-ALTER TABLE "JobPosting"
-  ADD CONSTRAINT "JobPostingPK" PRIMARY KEY(jobid);
+ALTER TABLE "jobposting"
+  ADD CONSTRAINT "jobpostingPK" PRIMARY KEY(jobid);
   
-  -- Constraint: "SkillPostingPK"
+  -- Constraint: "skillpostingPK"
 
--- ALTER TABLE "SkillPosting" DROP CONSTRAINT "SkillPostingPK";
+-- ALTER TABLE "skillposting" DROP CONSTRAINT "skillpostingPK";
 
-ALTER TABLE "SkillPosting"
-  ADD CONSTRAINT "SkillPostingPK" PRIMARY KEY(skillid);
--- Constraint: "ConfirmationPK"
+ALTER TABLE "skillposting"
+  ADD CONSTRAINT "skillpostingPK" PRIMARY KEY(skillid);
+-- Constraint: "confirmationPK"
 
--- ALTER TABLE confirmation DROP CONSTRAINT "ConfirmationPK";
+-- ALTER TABLE confirmation DROP CONSTRAINT "confirmationPK";
 
 ALTER TABLE confirmation
   ADD CONSTRAINT "ConfirmationPK" PRIMARY KEY(confirmationdate);
   
--- Constraint: "MemberPK"
+-- Constraint: "memberPK"
 
--- ALTER TABLE member DROP CONSTRAINT "MemberPK";
+-- ALTER TABLE member DROP CONSTRAINT "memberPK";
 
 ALTER TABLE member
-  ADD CONSTRAINT "MemberPK" PRIMARY KEY(memberid);
+  ADD CONSTRAINT "memberPK" PRIMARY KEY(memberid);
 
--- Constraint: "JobsPK"
+-- Constraint: "jobsPK"
 
--- ALTER TABLE "Jobs" DROP CONSTRAINT "JobsPK";
+-- ALTER TABLE "jobs" DROP CONSTRAINT "jobsPK";
 
-ALTER TABLE "Jobs"
-  ADD CONSTRAINT "JobsPK" PRIMARY KEY(jobid);
+ALTER TABLE "jobs"
+  ADD CONSTRAINT "jobsPK" PRIMARY KEY(jobid);
 
--- Foreign Key: "JobsFK"
+-- Foreign Key: "jobsFK"
 
--- ALTER TABLE "Jobs" DROP CONSTRAINT "JobsFK";
+-- ALTER TABLE "jobs" DROP CONSTRAINT "jobsFK";
 
-ALTER TABLE "Jobs"
-  ADD CONSTRAINT "JobsFK" FOREIGN KEY (offererid)
+ALTER TABLE "jobs"
+  ADD CONSTRAINT "jobsFK" FOREIGN KEY (offererid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Constraint: "ProductPK"
+-- Constraint: "productPK"
 
--- ALTER TABLE "Products" DROP CONSTRAINT "ProductPK";
+-- ALTER TABLE "products" DROP CONSTRAINT "productPK";
 
-ALTER TABLE "Products"
-  ADD CONSTRAINT "ProductPK" PRIMARY KEY(productid);
+ALTER TABLE "products"
+  ADD CONSTRAINT "productPK" PRIMARY KEY(productid);
 
--- Foreign Key: "ProductFK"
+-- Foreign Key: "productFK"
 
--- ALTER TABLE "Products" DROP CONSTRAINT "ProductFK";
+-- ALTER TABLE "products" DROP CONSTRAINT "productFK";
 
-ALTER TABLE "Products"
-  ADD CONSTRAINT "ProductFK" FOREIGN KEY (sellerid)
+ALTER TABLE "products"
+  ADD CONSTRAINT "productFK" FOREIGN KEY (sellerid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
 
--- Constraint: "JobStatus"
+-- Constraint: "jobstatus"
 
--- ALTER TABLE jobstatus DROP CONSTRAINT "JobStatus";
+-- ALTER TABLE jobstatus DROP CONSTRAINT "jobstatus";
 
 ALTER TABLE jobstatus
-  ADD CONSTRAINT "JobStatus" PRIMARY KEY(jobid);
-  -- Constraint: "ProfileVerificationPK"
+  ADD CONSTRAINT "jobstatus" PRIMARY KEY(jobid);
+  -- Constraint: "profileverificationPK"
 
--- ALTER TABLE profileverification DROP CONSTRAINT "ProfileVerificationPK";
+-- ALTER TABLE profileverification DROP CONSTRAINT "profileverificationPK";
 
 ALTER TABLE profileverification
-  ADD CONSTRAINT "ProfileVerificationPK" PRIMARY KEY(tellerid);
+  ADD CONSTRAINT "profileverificationPK" PRIMARY KEY(tellerid);
 
-  -- Constraint: "ProductStates"
+  -- Constraint: "productstates"
 
--- ALTER TABLE productstates DROP CONSTRAINT "ProductStates";
+-- ALTER TABLE productstates DROP CONSTRAINT "productstates";
 
 ALTER TABLE productstates
-  ADD CONSTRAINT "ProductStates" PRIMARY KEY(productid);
+  ADD CONSTRAINT "productstates" PRIMARY KEY(productid);
 
--- Constraint: "SkillsPK"
+-- Constraint: "skillsPK"
 
--- ALTER TABLE "Skills" DROP CONSTRAINT "SkillsPK";
+-- ALTER TABLE "skills" DROP CONSTRAINT "skillsPK";
 
-ALTER TABLE "Skills"
-  ADD CONSTRAINT "SkillsPK" PRIMARY KEY(skillid);
+ALTER TABLE "skills"
+  ADD CONSTRAINT "skillsPK" PRIMARY KEY(skillid);
 
--- Foreign Key: "SkillsFK"
+-- Foreign Key: "skillsFK"
 
--- ALTER TABLE "Skills" DROP CONSTRAINT "SkillsFK";
+-- ALTER TABLE "skills" DROP CONSTRAINT "skillsFK";
 
-ALTER TABLE "Skills"
-  ADD CONSTRAINT "SkillsFK" FOREIGN KEY (workerid)
+ALTER TABLE "skills"
+  ADD CONSTRAINT "skillsFK" FOREIGN KEY (workerid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
 
--- Constraint: "TransactionPK"
+-- Constraint: "transactionPK"
 
--- ALTER TABLE transaction DROP CONSTRAINT "TransactionPK";
+-- ALTER TABLE transaction DROP CONSTRAINT "transactionPK";
 
 ALTER TABLE transaction
-  ADD CONSTRAINT "TransactionPK" PRIMARY KEY(transactionid);
+  ADD CONSTRAINT "transactionPK" PRIMARY KEY(transactionid);
 
--- Foreign Key: "TransactionFK1"
+-- Foreign Key: "transactionFK1"
 
--- ALTER TABLE transaction DROP CONSTRAINT "TransactionFK1";
-
-ALTER TABLE transaction
-  ADD CONSTRAINT "TransactionFK1" FOREIGN KEY (offererid)
-      REFERENCES member (memberid) MATCH SIMPLE
-      ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "TransactionFK2"
-
--- ALTER TABLE transaction DROP CONSTRAINT "TransactionFK2";
+-- ALTER TABLE transaction DROP CONSTRAINT "transactionFK1";
 
 ALTER TABLE transaction
-  ADD CONSTRAINT "TransactionFK2" FOREIGN KEY (recipientid)
+  ADD CONSTRAINT "transactionFK1" FOREIGN KEY (offererid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Constraint: "PersonalAccountPK"
+-- Foreign Key: "transactionFK2"
 
--- ALTER TABLE personalaccount DROP CONSTRAINT "PersonalAccountPK";
+-- ALTER TABLE transaction DROP CONSTRAINT "transactionFK2";
 
-ALTER TABLE personalaccount
-  ADD CONSTRAINT "PersonalAccountPK" PRIMARY KEY(accountno);
--- Foreign Key: "PersonalAccountFK1"
-
--- ALTER TABLE personalaccount DROP CONSTRAINT "PersonalAccountFK1";
-
-ALTER TABLE personalaccount
-  ADD CONSTRAINT "PersonalAccountFK1" FOREIGN KEY (memberid)
+ALTER TABLE transaction
+  ADD CONSTRAINT "transactionFK2" FOREIGN KEY (recipientid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "PersonalAccountFK2"
+-- Constraint: "personalaccountPK"
 
--- ALTER TABLE personalaccount DROP CONSTRAINT "PersonalAccountFK2";
+-- ALTER TABLE personalaccount DROP CONSTRAINT "personalaccountPK";
 
 ALTER TABLE personalaccount
-  ADD CONSTRAINT "PersonalAccountFK2" FOREIGN KEY (transactionid)
+  ADD CONSTRAINT "personalaccountPK" PRIMARY KEY(accountno);
+-- Foreign Key: "personalaccountFK1"
+
+-- ALTER TABLE personalaccount DROP CONSTRAINT "personalaccountFK1";
+
+ALTER TABLE personalaccount
+  ADD CONSTRAINT "personalaccountFK1" FOREIGN KEY (memberid)
+      REFERENCES member (memberid) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE CASCADE;
+-- Foreign Key: "personalaccountFK2"
+
+-- ALTER TABLE personalaccount DROP CONSTRAINT "personalaccountFK2";
+
+ALTER TABLE personalaccount
+  ADD CONSTRAINT "personalaccountFK2" FOREIGN KEY (transactionid)
       REFERENCES transaction (transactionid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Constraint: "RecieptPK"
+-- Constraint: "recieptPK"
 
--- ALTER TABLE receipt DROP CONSTRAINT "RecieptPK";
-
-ALTER TABLE receipt
-  ADD CONSTRAINT "RecieptPK" PRIMARY KEY(recipientaccountno, offereraccountno, transactionid);
--- Foreign Key: "ReceiptFK"
-
--- ALTER TABLE receipt DROP CONSTRAINT "ReceiptFK";
+-- ALTER TABLE receipt DROP CONSTRAINT "recieptPK";
 
 ALTER TABLE receipt
-  ADD CONSTRAINT "ReceiptFK" FOREIGN KEY ("offererID")
+  ADD CONSTRAINT "recieptPK" PRIMARY KEY(recipientaccountno, offereraccountno, transactionid);
+-- Foreign Key: "receiptFK"
+
+-- ALTER TABLE receipt DROP CONSTRAINT "receiptFK";
+
+ALTER TABLE receipt
+  ADD CONSTRAINT "receiptFK" FOREIGN KEY ("offererID")
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ReceiptFK2"
+-- Foreign Key: "receiptFK2"
 
--- ALTER TABLE receipt DROP CONSTRAINT "ReceiptFK2";
+-- ALTER TABLE receipt DROP CONSTRAINT "receiptFK2";
 
 ALTER TABLE receipt
-  ADD CONSTRAINT "ReceiptFK2" FOREIGN KEY (recipientid)
+  ADD CONSTRAINT "receiptFK2" FOREIGN KEY (recipientid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ReceiptFK3"
+-- Foreign Key: "receiptFK3"
 
--- ALTER TABLE receipt DROP CONSTRAINT "ReceiptFK3";
+-- ALTER TABLE receipt DROP CONSTRAINT "receiptFK3";
 
 ALTER TABLE receipt
-  ADD CONSTRAINT "ReceiptFK3" FOREIGN KEY (recipientaccountno)
+  ADD CONSTRAINT "receiptFK3" FOREIGN KEY (recipientaccountno)
       REFERENCES personalaccount (accountno) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ReceiptFK4"
+-- Foreign Key: "receiptFK4"
 
--- ALTER TABLE receipt DROP CONSTRAINT "ReceiptFK4";
+-- ALTER TABLE receipt DROP CONSTRAINT "receiptFK4";
 
 ALTER TABLE receipt
-  ADD CONSTRAINT "ReceiptFK4" FOREIGN KEY (offereraccountno)
+  ADD CONSTRAINT "receiptFK4" FOREIGN KEY (offereraccountno)
       REFERENCES personalaccount (accountno) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ReceiptFK5"
+-- Foreign Key: "receiptFK5"
 
--- ALTER TABLE receipt DROP CONSTRAINT "ReceiptFK5";
+-- ALTER TABLE receipt DROP CONSTRAINT "receiptFK5";
 
 ALTER TABLE receipt
-  ADD CONSTRAINT "ReceiptFK5" FOREIGN KEY (transactionid)
+  ADD CONSTRAINT "receiptFK5" FOREIGN KEY (transactionid)
       REFERENCES transaction (transactionid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
 
--- Constraint: "TellerPK"
+-- Constraint: "tellerPK"
 
--- ALTER TABLE teller DROP CONSTRAINT "TellerPK";
+-- ALTER TABLE teller DROP CONSTRAINT "tellerPK";
 
 ALTER TABLE teller
-  ADD CONSTRAINT "TellerPK" PRIMARY KEY(tellerid);
--- Constraint: "SystemAdministratorPK"
+  ADD CONSTRAINT "tellerPK" PRIMARY KEY(tellerid);
+-- Constraint: "systemadministratorPK"
 
--- ALTER TABLE systemadministrator DROP CONSTRAINT "SystemAdministratorPK";
+-- ALTER TABLE systemadministrator DROP CONSTRAINT "systemadministratorPK";
 
 ALTER TABLE systemadministrator
-  ADD CONSTRAINT "SystemAdministratorPK" PRIMARY KEY(adminid);
--- Foreign Key: "JobPostingFK"
+  ADD CONSTRAINT "systemadministratorPK" PRIMARY KEY(adminid);
+-- Foreign Key: "jobpostingFK"
 
--- ALTER TABLE "JobPosting" DROP CONSTRAINT "JobPostingFK";
+-- ALTER TABLE "jobposting" DROP CONSTRAINT "jobpostingFK";
 
-ALTER TABLE "JobPosting"
-  ADD CONSTRAINT "JobPostingFK" FOREIGN KEY (accountno)
+ALTER TABLE "jobposting"
+  ADD CONSTRAINT "jobpostingFK" FOREIGN KEY (accountno)
       REFERENCES personalaccount (accountno) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "JobPostingFK2"
+-- Foreign Key: "jobpostingFK2"
 
--- ALTER TABLE "JobPosting" DROP CONSTRAINT "JobPostingFK2";
+-- ALTER TABLE "jobposting" DROP CONSTRAINT "jobpostingFK2";
 
-ALTER TABLE "JobPosting"
-  ADD CONSTRAINT "JobPostingFK2" FOREIGN KEY (jobid)
-      REFERENCES "Jobs" (jobid) MATCH SIMPLE
+ALTER TABLE "jobposting"
+  ADD CONSTRAINT "jobpostingFK2" FOREIGN KEY (jobid)
+      REFERENCES "jobs" (jobid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "JobPostingFK3"
+-- Foreign Key: "jobpostingFK3"
 
--- ALTER TABLE "JobPosting" DROP CONSTRAINT "JobPostingFK3";
+-- ALTER TABLE "jobposting" DROP CONSTRAINT "jobpostingFK3";
 
-ALTER TABLE "JobPosting"
-  ADD CONSTRAINT "JobPostingFK3" FOREIGN KEY (memberid)
+ALTER TABLE "jobposting"
+  ADD CONSTRAINT "jobpostingFK3" FOREIGN KEY (memberid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Constraint: "FeedbackPK"
+-- Constraint: "feedbackPK"
 
--- ALTER TABLE "Feedbacks" DROP CONSTRAINT "FeedbackPK";
+-- ALTER TABLE "feedbacks" DROP CONSTRAINT "feedbackPK";
 
-ALTER TABLE "Feedbacks"
-  ADD CONSTRAINT "FeedbackPK" PRIMARY KEY(feedbackid);
--- Foreign Key: "FeedbackFK"
+ALTER TABLE "feedbacks"
+  ADD CONSTRAINT "feedbackPK" PRIMARY KEY(feedbackid);
+-- Foreign Key: "feedbackFK"
 
--- ALTER TABLE "Feedbacks" DROP CONSTRAINT "FeedbackFK";
+-- ALTER TABLE "feedbacks" DROP CONSTRAINT "feedbackFK";
 
-ALTER TABLE "Feedbacks"
-  ADD CONSTRAINT "FeedbackFK" FOREIGN KEY (memberid)
+ALTER TABLE "feedbacks"
+  ADD CONSTRAINT "feedbackFK" FOREIGN KEY (memberid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Constraint: "OrderDetailsForCustomerPK"
+-- Constraint: "orderdetailsforcustomerPK"
 
--- ALTER TABLE "OrderDetailsForCustomer" DROP CONSTRAINT "OrderDetailsForCustomerPK";
+-- ALTER TABLE "orderdetailsforcustomer" DROP CONSTRAINT "orderdetailsforcustomerPK";
 
-ALTER TABLE "OrderDetailsForCustomer"
-  ADD CONSTRAINT "OrderDetailsForCustomerPK" PRIMARY KEY(buyerid, sellerid, productid);
--- Foreign Key: "OrderDetailsForCustomerFK1"
+ALTER TABLE "orderdetailsforcustomer"
+  ADD CONSTRAINT "orderdetailsforcustomerPK" PRIMARY KEY(buyerid, sellerid, productid);
+-- Foreign Key: "orderdetailsforcustomerFK1"
 
--- ALTER TABLE "OrderDetailsForCustomer" DROP CONSTRAINT "OrderDetailsForCustomerFK1";
+-- ALTER TABLE "orderdetailsforcustomer" DROP CONSTRAINT "orderdetailsforcustomerFK1";
 
-ALTER TABLE "OrderDetailsForCustomer"
-  ADD CONSTRAINT "OrderDetailsForCustomerFK1" FOREIGN KEY (buyerid)
+ALTER TABLE "orderdetailsforcustomer"
+  ADD CONSTRAINT "orderdetailsforcustomerFK1" FOREIGN KEY (buyerid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "OrderDetailsForCustomerFK2"
+-- Foreign Key: "orderdetailsforcustomerFK2"
 
--- ALTER TABLE "OrderDetailsForCustomer" DROP CONSTRAINT "OrderDetailsForCustomerFK2";
+-- ALTER TABLE "orderdetailsforcustomer" DROP CONSTRAINT "orderdetailsforcustomerFK2";
 
-ALTER TABLE "OrderDetailsForCustomer"
-  ADD CONSTRAINT "OrderDetailsForCustomerFK2" FOREIGN KEY (sellerid)
+ALTER TABLE "orderdetailsforcustomer"
+  ADD CONSTRAINT "orderdetailsforcustomerFK2" FOREIGN KEY (sellerid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "OrderDetailsForCustomerFK3"
+-- Foreign Key: "orderdetailsforcustomerFK3"
 
--- ALTER TABLE "OrderDetailsForCustomer" DROP CONSTRAINT "OrderDetailsForCustomerFK3";
+-- ALTER TABLE "orderdetailsforcustomer" DROP CONSTRAINT "orderdetailsforcustomerFK3";
 
-ALTER TABLE "OrderDetailsForCustomer"
-  ADD CONSTRAINT "OrderDetailsForCustomerFK3" FOREIGN KEY (productid)
+ALTER TABLE "orderdetailsforcustomer"
+  ADD CONSTRAINT "orderdetailsforcustomerFK3" FOREIGN KEY (productid)
       REFERENCES "Products" (productid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Constraint: "ProductCartPK"
+-- Constraint: "productcartPK"
 
--- ALTER TABLE "ProductCart" DROP CONSTRAINT "ProductCartPK";
+-- ALTER TABLE "productcart" DROP CONSTRAINT "productcartPK";
 
-ALTER TABLE "ProductCart"
-  ADD CONSTRAINT "ProductCartPK" PRIMARY KEY(buyerid);
--- Foreign Key: "ProductCartFK"
+ALTER TABLE "productcart"
+  ADD CONSTRAINT "productcartPK" PRIMARY KEY(buyerid);
+-- Foreign Key: "productcartFK"
 
--- ALTER TABLE "ProductCart" DROP CONSTRAINT "ProductCartFK";
+-- ALTER TABLE "productcart" DROP CONSTRAINT "productcartFK";
 
-ALTER TABLE "ProductCart"
-  ADD CONSTRAINT "ProductCartFK" FOREIGN KEY (productid)
-      REFERENCES "Products" (productid) MATCH SIMPLE
+ALTER TABLE "productcart"
+  ADD CONSTRAINT "productcartFK" FOREIGN KEY (productid)
+      REFERENCES "products" (productid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ProductListFK"
+-- Foreign Key: "productlistFK"
 
--- ALTER TABLE "ProductList" DROP CONSTRAINT "ProductListFK";
+-- ALTER TABLE "productlist" DROP CONSTRAINT "productlistFK";
 
-ALTER TABLE "ProductList"
-  ADD CONSTRAINT "ProductListFK" FOREIGN KEY (productid)
-      REFERENCES "Products" (productid) MATCH SIMPLE
+ALTER TABLE "productlist"
+  ADD CONSTRAINT "productlistFK" FOREIGN KEY (productid)
+      REFERENCES "products" (productid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "SkillPostingFK"
+-- Foreign Key: "skillpostingFK"
 
--- ALTER TABLE "SkillPosting" DROP CONSTRAINT "SkillPostingFK";
+-- ALTER TABLE "skillposting" DROP CONSTRAINT "skillpostingFK";
 
-ALTER TABLE "SkillPosting"
-  ADD CONSTRAINT "SkillPostingFK" FOREIGN KEY (memberid)
+ALTER TABLE "skillposting"
+  ADD CONSTRAINT "skillpostingFK" FOREIGN KEY (memberid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "SkillPostingFK2"
+-- Foreign Key: "skillpostingFK2"
 
--- ALTER TABLE "SkillPosting" DROP CONSTRAINT "SkillPostingFK2";
+-- ALTER TABLE "skillposting" DROP CONSTRAINT "skillpostingFK2";
 
-ALTER TABLE "SkillPosting"
-  ADD CONSTRAINT "SkillPostingFK2" FOREIGN KEY (accountno)
+ALTER TABLE "skillposting"
+  ADD CONSTRAINT "skillpostingFK2" FOREIGN KEY (accountno)
       REFERENCES personalaccount (accountno) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "SkillPostingFK3"
+-- Foreign Key: "skillpostingFK3"
 
--- ALTER TABLE "SkillPosting" DROP CONSTRAINT "SkillPostingFK3";
+-- ALTER TABLE "skillposting" DROP CONSTRAINT "skillpostingFK3";
 
-ALTER TABLE "SkillPosting"
-  ADD CONSTRAINT "SkillPostingFK3" FOREIGN KEY (skillid)
-      REFERENCES "Skills" (skillid) MATCH SIMPLE
+ALTER TABLE "skillposting"
+  ADD CONSTRAINT "skillpostingFK3" FOREIGN KEY (skillid)
+      REFERENCES "skills" (skillid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Constraint: "TimeCheckAlterationPK"
+-- Constraint: "timecheckalterationPK"
 
--- ALTER TABLE "TimeCheckAlteration" DROP CONSTRAINT "TimeCheckAlterationPK";
+-- ALTER TABLE "timecheckalteration" DROP CONSTRAINT "timecheckalterationPK";
 
-ALTER TABLE "TimeCheckAlteration"
-  ADD CONSTRAINT "TimeCheckAlterationPK" PRIMARY KEY(buyerid, sellerid, transactionid);
--- Foreign Key: "TimeCheckAlterationFK1"
+ALTER TABLE "timecheckalteration"
+  ADD CONSTRAINT "timecheckalterationPK" PRIMARY KEY(buyerid, sellerid, transactionid);
+-- Foreign Key: "timecheckalterationFK1"
 
--- ALTER TABLE "TimeCheckAlteration" DROP CONSTRAINT "TimeCheckAlterationFK1";
+-- ALTER TABLE "timecheckalteration" DROP CONSTRAINT "timecheckalterationFK1";
 
-ALTER TABLE "TimeCheckAlteration"
-  ADD CONSTRAINT "TimeCheckAlterationFK1" FOREIGN KEY (buyerid)
+ALTER TABLE "timecheckalteration"
+  ADD CONSTRAINT "timecheckalterationFK1" FOREIGN KEY (buyerid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "TimeCheckAlterationFK2"
+-- Foreign Key: "timecheckalterationFK2"
 
--- ALTER TABLE "TimeCheckAlteration" DROP CONSTRAINT "TimeCheckAlterationFK2";
+-- ALTER TABLE "timecheckalteration" DROP CONSTRAINT "timecheckalterationFK2";
 
-ALTER TABLE "TimeCheckAlteration"
-  ADD CONSTRAINT "TimeCheckAlterationFK2" FOREIGN KEY (sellerid)
+ALTER TABLE "timecheckalteration"
+  ADD CONSTRAINT "timecheckalterationFK2" FOREIGN KEY (sellerid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "TimeCheckAlterationFK3"
+-- Foreign Key: "timecheckalterationFK3"
 
--- ALTER TABLE "TimeCheckAlteration" DROP CONSTRAINT "TimeCheckAlterationFK3";
+-- ALTER TABLE "timecheckalteration" DROP CONSTRAINT "timecheckalterationFK3";
 
-ALTER TABLE "TimeCheckAlteration"
-  ADD CONSTRAINT "TimeCheckAlterationFK3" FOREIGN KEY (transactionid)
+ALTER TABLE "timecheckalteration"
+  ADD CONSTRAINT "timecheckalterationFK3" FOREIGN KEY (transactionid)
       REFERENCES transaction (transactionid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ConfirmationFK"
+-- Foreign Key: "confirmationFK"
 
--- ALTER TABLE confirmation DROP CONSTRAINT "ConfirmationFK";
+-- ALTER TABLE confirmation DROP CONSTRAINT "confirmationFK";
 
 ALTER TABLE confirmation
-  ADD CONSTRAINT "ConfirmationFK" FOREIGN KEY (workerid)
+  ADD CONSTRAINT "confirmationFK" FOREIGN KEY (workerid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ConfirmationFK2"
+-- Foreign Key: "confirmationFK2"
 
--- ALTER TABLE confirmation DROP CONSTRAINT "ConfirmationFK2";
+-- ALTER TABLE confirmation DROP CONSTRAINT "confirmationFK2";
 
 ALTER TABLE confirmation
-  ADD CONSTRAINT "ConfirmationFK2" FOREIGN KEY (offererid)
+  ADD CONSTRAINT "confirmationFK2" FOREIGN KEY (offererid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ConfirmationFK3"
+-- Foreign Key: "confirmationFK3"
 
--- ALTER TABLE confirmation DROP CONSTRAINT "ConfirmationFK3";
+-- ALTER TABLE confirmation DROP CONSTRAINT "confirmationFK3";
 
 ALTER TABLE confirmation
-  ADD CONSTRAINT "ConfirmationFK3" FOREIGN KEY (jobid)
-      REFERENCES "Jobs" (jobid) MATCH SIMPLE
+  ADD CONSTRAINT "confirmationFK3" FOREIGN KEY (jobid)
+      REFERENCES "jobs" (jobid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "JobStatusFK"
+-- Foreign Key: "jobstatusFK"
 
--- ALTER TABLE jobstatus DROP CONSTRAINT "JobStatusFK";
+-- ALTER TABLE jobstatus DROP CONSTRAINT "jobstatusFK";
 
 ALTER TABLE jobstatus
-  ADD CONSTRAINT "JobStatusFK" FOREIGN KEY (jobid)
-      REFERENCES "Jobs" (jobid) MATCH SIMPLE
+  ADD CONSTRAINT "jobstatusFK" FOREIGN KEY (jobid)
+      REFERENCES "jobs" (jobid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
 
--- Constraint: "ProductPostingPK"
+-- Constraint: "productpostingPK"
 
--- ALTER TABLE productposting DROP CONSTRAINT "ProductPostingPK";
-
-ALTER TABLE productposting
-  ADD CONSTRAINT "ProductPostingPK" PRIMARY KEY(memberid, productid);
--- Foreign Key: "ProductPostingFK"
-
--- ALTER TABLE productposting DROP CONSTRAINT "ProductPostingFK";
+-- ALTER TABLE productposting DROP CONSTRAINT "productpostingPK";
 
 ALTER TABLE productposting
-  ADD CONSTRAINT "ProductPostingFK" FOREIGN KEY (productid)
-      REFERENCES "Products" (productid) MATCH SIMPLE
+  ADD CONSTRAINT "productpostingPK" PRIMARY KEY(memberid, productid);
+-- Foreign Key: "productpostingFK"
+
+-- ALTER TABLE productposting DROP CONSTRAINT "productpostingFK";
+
+ALTER TABLE productposting
+  ADD CONSTRAINT "productpostingFK" FOREIGN KEY (productid)
+      REFERENCES "products" (productid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ProductPostingFK2"
+-- Foreign Key: "productpostingFK2"
 
--- ALTER TABLE productposting DROP CONSTRAINT "ProductPostingFK2";
+-- ALTER TABLE productposting DROP CONSTRAINT "productpostingFK2";
 
 ALTER TABLE productposting
-  ADD CONSTRAINT "ProductPostingFK2" FOREIGN KEY (memberid)
+  ADD CONSTRAINT "productpostingFK2" FOREIGN KEY (memberid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ProductStatesFK"
+-- Foreign Key: "productstatesFK"
 
--- ALTER TABLE productstates DROP CONSTRAINT "ProductStatesFK";
+-- ALTER TABLE productstates DROP CONSTRAINT "productstatesFK";
 
 ALTER TABLE productstates
-  ADD CONSTRAINT "ProductStatesFK" FOREIGN KEY (productid)
-      REFERENCES "Products" (productid) MATCH SIMPLE
+  ADD CONSTRAINT "productstatesFK" FOREIGN KEY (productid)
+      REFERENCES "products" (productid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ProfileVerificationFK"
+-- Foreign Key: "profileverificationFK"
 
--- ALTER TABLE profileverification DROP CONSTRAINT "ProfileVerificationFK";
+-- ALTER TABLE profileverification DROP CONSTRAINT "profileverificationFK";
 
 ALTER TABLE profileverification
-  ADD CONSTRAINT "ProfileVerificationFK" FOREIGN KEY (memberid)
+  ADD CONSTRAINT "profileverificationFK" FOREIGN KEY (memberid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ProfileVerificationFK2"
+-- Foreign Key: "profileverificationFK2"
 
--- ALTER TABLE profileverification DROP CONSTRAINT "ProfileVerificationFK2";
+-- ALTER TABLE profileverification DROP CONSTRAINT "profileverificationFK2";
 
 ALTER TABLE profileverification
-  ADD CONSTRAINT "ProfileVerificationFK2" FOREIGN KEY (tellerid)
+  ADD CONSTRAINT "profileverificationFK2" FOREIGN KEY (tellerid)
       REFERENCES teller (tellerid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Constraint: "RecieptModificationPK"
+-- Constraint: "recieptmodificationPK"
 
--- ALTER TABLE receiptmodification DROP CONSTRAINT "RecieptModificationPK";
-
-ALTER TABLE receiptmodification
-  ADD CONSTRAINT "RecieptModificationPK" PRIMARY KEY(tellerid, transactionid);
--- Foreign Key: "ReceiptModificationFK"
-
--- ALTER TABLE receiptmodification DROP CONSTRAINT "ReceiptModificationFK";
+-- ALTER TABLE receiptmodification DROP CONSTRAINT "recieptmodificationPK";
 
 ALTER TABLE receiptmodification
-  ADD CONSTRAINT "ReceiptModificationFK" FOREIGN KEY (tellerid)
+  ADD CONSTRAINT "recieptmodificationPK" PRIMARY KEY(tellerid, transactionid);
+-- Foreign Key: "receiptmodificationFK"
+
+-- ALTER TABLE receiptmodification DROP CONSTRAINT "receiptmodificationFK";
+
+ALTER TABLE receiptmodification
+  ADD CONSTRAINT "receiptmodificationFK" FOREIGN KEY (tellerid)
       REFERENCES teller (tellerid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ReceiptModificationFK2"
+-- Foreign Key: "receiptmodificationFK2"
 
--- ALTER TABLE receiptmodification DROP CONSTRAINT "ReceiptModificationFK2";
+-- ALTER TABLE receiptmodification DROP CONSTRAINT "receiptmodificationFK2";
 
 ALTER TABLE receiptmodification
-  ADD CONSTRAINT "ReceiptModificationFK2" FOREIGN KEY (transactionid)
+  ADD CONSTRAINT "receiptmodificationFK2" FOREIGN KEY (transactionid)
       REFERENCES transaction (transactionid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Constraint: "SupervisionPK"
+-- Constraint: "supervisionPK"
 
--- ALTER TABLE supervision DROP CONSTRAINT "SupervisionPK";
-
-ALTER TABLE supervision
-  ADD CONSTRAINT "SupervisionPK" PRIMARY KEY(tellerid, memberid, feedbackid);
--- Foreign Key: "SupervisionFK"
-
--- ALTER TABLE supervision DROP CONSTRAINT "SupervisionFK";
+-- ALTER TABLE supervision DROP CONSTRAINT "supervisionPK";
 
 ALTER TABLE supervision
-  ADD CONSTRAINT "SupervisionFK" FOREIGN KEY (tellerid)
+  ADD CONSTRAINT "supervisionPK" PRIMARY KEY(tellerid, memberid, feedbackid);
+-- Foreign Key: "supervisionFK"
+
+-- ALTER TABLE supervision DROP CONSTRAINT "supervisionFK";
+
+ALTER TABLE supervision
+  ADD CONSTRAINT "supervisionFK" FOREIGN KEY (tellerid)
       REFERENCES teller (tellerid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "SupervisionFK2"
+-- Foreign Key: "supervisionFK2"
 
--- ALTER TABLE supervision DROP CONSTRAINT "SupervisionFK2";
-
-ALTER TABLE supervision
-  ADD CONSTRAINT "SupervisionFK2" FOREIGN KEY (memberid)
-      REFERENCES member (memberid) MATCH SIMPLE
-      ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "SupervisionFK3"
-
--- ALTER TABLE supervision DROP CONSTRAINT "SupervisionFK3";
+-- ALTER TABLE supervision DROP CONSTRAINT "supervisionFK2";
 
 ALTER TABLE supervision
-  ADD CONSTRAINT "SupervisionFK3" FOREIGN KEY (feedbackid)
-      REFERENCES "Feedbacks" (feedbackid) MATCH SIMPLE
-      ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ModifyTimeCheckFK1"
-
--- ALTER TABLE modifytimecheck DROP CONSTRAINT "ModifyTimeCheckFK1";
-
-ALTER TABLE modifytimecheck
-  ADD CONSTRAINT "ModifyTimeCheckFK1" FOREIGN KEY (offererid)
+  ADD CONSTRAINT "supervisionFK2" FOREIGN KEY (memberid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "ModifyTimeCheckFK2"
+-- Foreign Key: "supervisionFK3"
 
--- ALTER TABLE modifytimecheck DROP CONSTRAINT "ModifyTimeCheckFK2";
+-- ALTER TABLE supervision DROP CONSTRAINT "supervisionFK3";
+
+ALTER TABLE supervision
+  ADD CONSTRAINT "supervisionFK3" FOREIGN KEY (feedbackid)
+      REFERENCES "feedbacks" (feedbackid) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE CASCADE;
+-- Foreign Key: "modifytimecheckFK1"
+
+-- ALTER TABLE modifytimecheck DROP CONSTRAINT "modifytimecheckFK1";
 
 ALTER TABLE modifytimecheck
-  ADD CONSTRAINT "ModifyTimeCheckFK2" FOREIGN KEY (transactionid)
+  ADD CONSTRAINT "modifytimecheckFK1" FOREIGN KEY (offererid)
+      REFERENCES member (memberid) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE CASCADE;
+-- Foreign Key: "modifytimecheckFK2"
+
+-- ALTER TABLE modifytimecheck DROP CONSTRAINT "modifytimecheckFK2";
+
+ALTER TABLE modifytimecheck
+  ADD CONSTRAINT "modifytimecheckFK2" FOREIGN KEY (transactionid)
       REFERENCES transaction (transactionid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
--- Foreign Key: "OffererContactFK"
+-- Foreign Key: "offerercontactFK"
 
--- ALTER TABLE offerercontact DROP CONSTRAINT "OffererContactFK";
+-- ALTER TABLE offerercontact DROP CONSTRAINT "offerercontactFK";
 
 ALTER TABLE offerercontact
-  ADD CONSTRAINT "OffererContactFK" FOREIGN KEY (offereid)
+  ADD CONSTRAINT "offerercontactFK" FOREIGN KEY (offereid)
       REFERENCES member (memberid) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
 
